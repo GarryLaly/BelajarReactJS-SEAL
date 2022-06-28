@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { globalStyles } from "../theme/globalStyles";
+import { setTodoList } from "../store/actionCreators";
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -15,24 +17,27 @@ const Wrapper = styled.section`
 `;
 
 const Home = () => {
-  const [taskList, setTaskList] = useState({
-    data: [],
-  });
+  const dispatch = useDispatch();
+  const todoList = useSelector((state) => state.todoList);
+  // const [taskList, setTaskList] = useState({
+  //   data: [],
+  // });
   const [newTaskValue, setNewTaskValue] = useState("");
 
   const actionAddTask = () => {
     if (newTaskValue.trim() === "") {
       return false;
     }
-    const newData = taskList.data;
+    const newData = todoList.data;
     newData.push(newTaskValue);
-    setTaskList({ data: newData });
+    dispatch(setTodoList({ data: newData }));
     setNewTaskValue("");
   };
 
   return (
     <div>
       <br />
+      {JSON.stringify(todoList)}
       <div style={globalStyles.row}>
         <input
           type="text"
@@ -44,7 +49,7 @@ const Home = () => {
       </div>
       <div>
         <ul>
-          {taskList.data.map((item) => (
+          {todoList.data.map((item) => (
             <li>{item}</li>
           ))}
         </ul>
@@ -52,7 +57,7 @@ const Home = () => {
       <Button
         backgroundColor="#e74c3c"
         text="Clear"
-        onClick={() => setTaskList({ data: [] })}
+        onClick={() => dispatch(setTodoList({ data: [] }))}
       />
       <Button
         text="Recommendation"

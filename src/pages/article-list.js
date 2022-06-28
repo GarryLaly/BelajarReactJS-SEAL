@@ -14,7 +14,7 @@ const ArticleList = () => {
         "http://hp-api.herokuapp.com/api/characters"
       );
 
-      setListData(response.data.filter((item, index) => index < 10));
+      setListData(response.data);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
