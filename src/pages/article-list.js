@@ -11,7 +11,7 @@ const ArticleList = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        "http://hp-api.herokuapp.com/api/characters"
+        "https://hp-api.onrender.com/api/characters"
       );
 
       setListData(response.data);
@@ -36,8 +36,7 @@ const ArticleList = () => {
           flexWrap: "wrap",
           display: "flex",
           maxWidth: 500,
-        }}
-      >
+        }}>
         {listData.map((item) => (
           <Link
             to={`/article/detail/${item.slug}`}
@@ -46,8 +45,7 @@ const ArticleList = () => {
               textDecoration: "none",
               width: "48%",
               margin: "1%",
-            }}
-          >
+            }}>
             <div
               style={{
                 color: "black",
@@ -56,8 +54,7 @@ const ArticleList = () => {
                 marginBottom: 5,
                 borderRadius: 10,
                 padding: 10,
-              }}
-            >
+              }}>
               <img
                 src={item.image}
                 style={{ width: "100%", height: "auto" }}
@@ -69,8 +66,7 @@ const ArticleList = () => {
                   marginTop: 5,
                   fontWeight: "bold",
                   color: "#000",
-                }}
-              >
+                }}>
                 {item.name}
               </div>
               <div style={{ color: "#333" }}>

@@ -11,23 +11,23 @@ const Auth = () => {
     try {
       setIsLoading(true);
       // untuk form-data dan x-www-form-urlencoded
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("password", password);
+      // const formData = new FormData();
+      // formData.append("username", username);
+      // formData.append("password", password);
 
-      const response = await axios.post(
-        "http://localhost:8080/backend/login",
-        formData
-      );
+      // const response = await axios.post(
+      //   "https://8340fa0f-4afd-43b9-8593-2a23fcfa580c.mock.pstmn.io/login",
+      //   formData
+      // );
 
       // ini untuk raw json
-      // const response = await axios.post(
-      //   "http://localhost:8080/backend/login",
-      //   {
-      //     username,
-      //     password
-      //   }
-      // );
+      const response = await axios.post(
+        "https://8340fa0f-4afd-43b9-8593-2a23fcfa580c.mock.pstmn.io/login",
+        {
+          email: username,
+          password,
+        }
+      );
 
       setResult(response.data);
     } catch (e) {
@@ -60,11 +60,12 @@ const Auth = () => {
       <div>
         <button onClick={actionLogin}>Login</button>
       </div>
+      <div>{result.message}</div>
 
       <br />
       <br />
-      <h5>Result:</h5>
-      <div>{JSON.stringify(result)}</div>
+      {/* <h5>Result:</h5>
+      <div>{JSON.stringify(result)}</div> */}
     </div>
   );
 };
